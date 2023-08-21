@@ -1,5 +1,5 @@
 # php-template
-this template is used to experiment with different architectures
+This repository is a guide for hosting simple PHP applications on your local machine. It is meant to be used as an educational resource to allow developers to take a template and create their own applications for business or portfolio work.
 
 # Quickstart
 ```
