@@ -13,4 +13,5 @@ this template is used to experiment with different architectures
 
 # Resources
 XAMPP: [https://www.apachefriends.org/](url)
+
 Landing Page: [http://localhost/php-template/hello.php](url)
