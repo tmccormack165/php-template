@@ -14,4 +14,4 @@ This repository is a guide for hosting simple PHP applications on your local mac
 # Resources
 **XAMPP:** [https://www.apachefriends.org/](url)
 
-**Landing Page:** [localhost/php-template/hello.php](url)
+**Landing Page:** [localhost/php-template/hello.php]
