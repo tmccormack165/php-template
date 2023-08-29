@@ -10,7 +10,6 @@ $tc = '';
 # add rule that the username must contain a number
 $regex_uname = '/.*\d.*/';
 
-
 if (isset($_POST['submitb'])) {
     $valid = True;
     if (isset($_POST['uname']) && $_POST['uname'] != '') {
@@ -22,6 +21,7 @@ if (isset($_POST['submitb'])) {
     } else {
         $valid = False;
     }
+
 
     if (isset($_POST['pwd']) && $_POST['pwd'] != '') {
         $pwd = $_POST['pwd'];
@@ -40,19 +40,14 @@ if (isset($_POST['submitb'])) {
     } else {
         $valid = False;
     }
-    /*
-    if(isset($_POST['languages']) && !is_array($_POST['languages']) && count($_POST['languages']) === 0){
-    $lang = $_POST['languages'];
-    }
-    else{
-    $valid = False;
-    }
-    */
+
+
     if (isset($_POST['ec']) && $_POST['ec'] != '') {
         $ec = $_POST['ec'];
     } else {
         $valid = False;
     }
+
 
     if (isset($_POST['comments']) && $_POST['comments'] != '') {
         $comments = $_POST['comments'];
@@ -68,88 +63,48 @@ if (isset($_POST['submitb'])) {
 
     if ($valid == True) {
         //print user data to console
-
-        printf('Username: %s <br>
-                Password: %s <br>
-                Color: %s <br>
-                Languages: %s <br>
-                Eye Color: %s <br>
-                Comments: %s <br>
-                Terms & Conditions: %s <br>',
-            htmlspecialchars($uname),
-            htmlspecialchars($pwd),
-            htmlspecialchars($color),
-            htmlspecialchars(implode(' ', $lang)),
-            htmlspecialchars($ec),
-            htmlspecialchars($comments),
-            htmlspecialchars($tc)
-        );
-
-
-        // insert data
-
-        // instantiate database
-
-        //connect to bible_ol database
-        $db = new mysqli(
-            'localhost',
-            'root',
-            '',
-            'bible_ol'
-        );
-
-        //insert user into the database
-        $query1 = sprintf("INSERT INTO users (username, password, favorite_color)
-                           VALUES ('%s', '%s', '%s')", $db->real_escape_string($uname),
-            $db->real_escape_string($pwd), $db->real_escape_string($color)
-        );
-
-        $db->query($query1);
-
-        echo '<p>User Added</p>';
-
-        //close bible_ol database
-        $db->close();
-
-
-
-        echo 'complete';
-
-
-        // construct query
+        printf('Form submitted successfully, welcom %s', htmlspecialchars($uname));
         /*
-        $sql = sprintf(
-        'INSERT INTO users (username, password, favorite_color) VALUES ('%s', '%s', '%s') ',
-        $db->real_escape_string($uname), $db->real_escape_string($pwd), $db->real_escape_string($color)
-        );
+        printf('Username: %s <br>
+        Password: %s <br>
+        Color: %s <br>
+        Languages: %s <br>
+        Eye Color: %s <br>
+        Comments: %s <br>
+        Terms & Conditions: %s <br>',
+        htmlspecialchars($uname),
+        htmlspecialchars($pwd),
+        htmlspecialchars($color),
+        htmlspecialchars(implode(' ', $lang)),
+        htmlspecialchars($ec),
+        htmlspecialchars($comments),
+        htmlspecialchars($tc)
         
-        echo $sql;
+        );
         */
-        //$db->query($sql);
-        //echo '<p>User Added.</p>';
-        //$db->close();
 
     }
 
 }
 ?>
+
 <html>
 
 <head>
     <title>Register</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles/main.css" />
+    <!--<link rel="stylesheet" href="styles/main.css" />-->
 
 </head>
 
-<body>
+<body style='background-color:lightgray'>
     <div class='panel'>
         <form action='' method='post'>
             Username: <input type='text' name='uname' value='<?php echo htmlspecialchars($uname) ?>'><br><br>
             Password: <input type='text' name='pwd'><br><br>
             Favorite Color:
-            <select name=''>
+            <select name='color'>
                 <option value=''>Please Select</option>
                 <option value='#03fc8c' <?php
                 if ($color == '#03fc8c') {
@@ -235,10 +190,10 @@ if (isset($_POST['submitb'])) {
                 echo ' checked';
             } ?>>
             I accept the Terms &amp; Conditions
+            <br><br>
+            <input style='float:left;' type='submit' name='submitb' value='Register'>
+            <input style='float:left; margin-left: 5px;' type='submit' name='clear' value='Clear'>
             <br>
-            <input type='submit' class="button-33" name='submitb' value='Register'>
-            <input type='submit'class="button-33" name='clear' value='Clear'>
-
 
         </form>
     </div>
