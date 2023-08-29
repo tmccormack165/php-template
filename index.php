@@ -62,26 +62,41 @@ if (isset($_POST['submitb'])) {
     }
 
     if ($valid == True) {
-        //print user data to console
-        printf('Form submitted successfully, welcom %s', htmlspecialchars($uname));
-        /*
-        printf('Username: %s <br>
-        Password: %s <br>
-        Color: %s <br>
-        Languages: %s <br>
-        Eye Color: %s <br>
-        Comments: %s <br>
-        Terms & Conditions: %s <br>',
-        htmlspecialchars($uname),
-        htmlspecialchars($pwd),
-        htmlspecialchars($color),
-        htmlspecialchars(implode(' ', $lang)),
-        htmlspecialchars($ec),
-        htmlspecialchars($comments),
-        htmlspecialchars($tc)
-        
+        //print user data to console        
+        // INSERT user into the students table with the mysqli extension:
+        // connect
+        $db = new mysqli(
+            'localhost',
+            'tim',
+            'pwd',
+            'bible_ol'
         );
-        */
+        
+        // check for existing usernames   
+        $search_users_cmd = 'SELECT username FROM students;';                  
+        $result = $db->query($search_users_cmd);
+        //printf('<br>Number of Users: %d<br>',$usernames->num_rows);
+        // iterate over usernames
+        $user_array = [];
+        while($row = mysqli_fetch_assoc($result)){ 
+            array_push($user_array, $row['username']);
+        }
+        
+
+        if(!in_array($uname, $user_array)){
+            // register student
+            $register_cmd = sprintf("INSERT INTO students (username, password, eye_color, favorite_color) VALUES ('%s', '%s', '%s', '%s')", $db->real_escape_string($uname), $db->real_escape_string($pwd), $db->real_escape_string($ec), $db->real_escape_string($color));                
+            $db->query($register_cmd);
+        }
+        else{
+            printf('Sorry, that username is not available <br>');
+        }
+
+        
+
+        // close
+        $db->close();
+
 
     }
 
