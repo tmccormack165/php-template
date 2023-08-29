@@ -23,8 +23,8 @@
                     <b>♀</b> <input type='radio' name='gender' value='female'><br><br>
                 </div>
             </div>
-            <input type='submit' class="button-33" name='register_button' value='Register'>&nbsp;
-            <input type='submit' class="button-33" name='clear' value='Clear'>
+            <input type='submit'  name='register_button' value='Register'>&nbsp;
+            <input type='submit'  name='clear' value='Clear'>
         </form>
     </div>
 </body>

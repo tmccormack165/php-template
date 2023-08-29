@@ -68,7 +68,7 @@ if (isset($_POST['submitb'])) {
 
     if ($valid == True) {
         //print user data to console
-        
+
         printf('Username: %s <br>
                 Password: %s <br>
                 Color: %s <br>
@@ -84,12 +84,12 @@ if (isset($_POST['submitb'])) {
             htmlspecialchars($comments),
             htmlspecialchars($tc)
         );
-        
+
 
         // insert data
 
         // instantiate database
-        
+
         //connect to bible_ol database
         $db = new mysqli(
             'localhost',
@@ -97,11 +97,12 @@ if (isset($_POST['submitb'])) {
             '',
             'bible_ol'
         );
-        
+
         //insert user into the database
         $query1 = sprintf("INSERT INTO users (username, password, favorite_color)
                            VALUES ('%s', '%s', '%s')", $db->real_escape_string($uname),
-                           $db->real_escape_string($pwd), $db->real_escape_string($color));
+            $db->real_escape_string($pwd), $db->real_escape_string($color)
+        );
 
         $db->query($query1);
 
@@ -111,15 +112,15 @@ if (isset($_POST['submitb'])) {
         $db->close();
 
 
-        
+
         echo 'complete';
 
-        
+
         // construct query
         /*
         $sql = sprintf(
-            'INSERT INTO users (username, password, favorite_color) VALUES ('%s', '%s', '%s') ',
-            $db->real_escape_string($uname), $db->real_escape_string($pwd), $db->real_escape_string($color)
+        'INSERT INTO users (username, password, favorite_color) VALUES ('%s', '%s', '%s') ',
+        $db->real_escape_string($uname), $db->real_escape_string($pwd), $db->real_escape_string($color)
         );
         
         echo $sql;
@@ -132,7 +133,7 @@ if (isset($_POST['submitb'])) {
 
 }
 ?>
-
+<html>
 <form action='' method='post'>
     Username: <input type='text' name='uname' value='<?php echo htmlspecialchars($uname) ?>'><br><br>
     Password: <input type='text' name='pwd'><br><br>
@@ -229,3 +230,5 @@ if (isset($_POST['submitb'])) {
 
 
 </form>
+
+</html>
