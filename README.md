@@ -12,6 +12,6 @@ This repository is a guide for hosting simple PHP applications on your local mac
 ```
 
 # Resources
-**XAMPP:** [https://www.apachefriends.org/](url)
+**XAMPP:** https://www.apachefriends.org/
 
-**Landing Page:** [http://bol.blueskyinstruments.com/]
+**Landing Page:** http://bol.blueskyinstruments.com/
