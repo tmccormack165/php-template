@@ -62,7 +62,7 @@ if (isset($_POST['submitb'])) {
     }
 
     if ($valid == True) {
-        
+
         // connect to remote database
         $servername = 'localhost';
         $username = 'bluesll1_demo1_user';
@@ -92,6 +92,7 @@ if (isset($_POST['submitb'])) {
             $register_cmd = sprintf("INSERT INTO students (username, password, eye_color, favorite_color) VALUES ('%s', '%s', '%s', '%s')", $db->real_escape_string($uname), $db->real_escape_string($pwd), $db->real_escape_string($ec), $db->real_escape_string($color));                
             $db->query($register_cmd);
         }
+        
         else{
             printf('Sorry, that username is not available <br>');
         }
