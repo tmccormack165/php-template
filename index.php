@@ -62,39 +62,42 @@ if (isset($_POST['submitb'])) {
     }
 
     if ($valid == True) {
-        //print user data to console        
-        // INSERT user into the students table with the mysqli extension:
-        // connect
+
+        // connect to remote database
+        $servername = 'localhost';
+        $username = 'bluesll1_demo1_user';
+        $password = 'Tim$turf101';
+        $dbname = 'bluesll1_demo1';
+
         $db = new mysqli(
-            'localhost',
-            'tim',
-            'pwd',
-            'bible_ol'
+            $servername,
+            $username,
+            $password,
+            $dbname
         );
         
         // check for existing usernames   
         $search_users_cmd = 'SELECT username FROM students;';                  
         $result = $db->query($search_users_cmd);
-        //printf('<br>Number of Users: %d<br>',$usernames->num_rows);
-        // iterate over usernames
+
+        // collect current usernames
         $user_array = [];
         while($row = mysqli_fetch_assoc($result)){ 
             array_push($user_array, $row['username']);
         }
         
-
+        //if the user is unique, register the user as student
         if(!in_array($uname, $user_array)){
             // register student
             $register_cmd = sprintf("INSERT INTO students (username, password, eye_color, favorite_color) VALUES ('%s', '%s', '%s', '%s')", $db->real_escape_string($uname), $db->real_escape_string($pwd), $db->real_escape_string($ec), $db->real_escape_string($color));                
             $db->query($register_cmd);
         }
+        
         else{
             printf('Sorry, that username is not available <br>');
         }
 
-        
-
-        // close
+        // close connection
         $db->close();
 
 
